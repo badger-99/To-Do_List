@@ -1,0 +1,14 @@
+/* Importing downloaded font */
+@font-face {
+  font-family: 'MyFont', sans-serif;
+  src: url('./my-font.ttf') format('ttf');
+}
+
+.hello {
+  color: red;
+  font-family: 'MyFont', sans-serif;
+  font-size: 5rem;
+  font-weight: 600;
+  font-style: italic;
+  background: url('./icon2.jpg');
+}
