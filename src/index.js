@@ -18,6 +18,7 @@ function component() {
   refresh.setAttribute('href', '#');
   const refreshIcon = new Image();
   refreshIcon.src = Icon1;
+  refreshIcon.classList.add('icon')
   refreshIcon.setAttribute('id', 'refresh');
   refresh.appendChild(refreshIcon)
   heading.appendChild(refresh)
@@ -48,6 +49,7 @@ function component() {
   tasks.forEach((item, index) => (item.index = index));
 
   list.innerHTML = tasks.map((task) => taskTemplate(task)).join('');
+  const span = document.querySelectorAll('.vertDot')
   container.appendChild(list);
 
   // Clear button
