@@ -3,11 +3,14 @@
   font-family: 'MyFont', sans-serif;
   src: url('./my-font.ttf') format('ttf');
 }
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 #toDo {
-  color: red;
+  border:1px solid red;
   font-family: 'MyFont', sans-serif;
   font-size: 1rem;
-  font-weight: 600;
-  font-style: italic;
 }
