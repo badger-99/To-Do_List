@@ -3,6 +3,7 @@
   font-family: 'Quattrocento', sans-serif;
   src: url('./QuattrocentoSans-Italic.ttf') format('ttf');
 }
+
 * {
   margin: 0;
   padding: 0;
@@ -16,13 +17,13 @@ body {
 }
 
 #toDo {
-  border: 1px solid #dddddd;
+  border: 1px solid #ddd;
   font-family: 'Quattrocento', sans-serif;
   font-size: 1rem;
   max-width: 36rem;
   margin: 0 auto;
   background: white;
-  box-shadow: 0px 3px 7px 11px #a8a8a8bf;
+  box-shadow: 0 3px 7px 11px #a8a8a8bf;
 }
 
 #heading,
@@ -54,7 +55,7 @@ body {
 #input::placeholder {
   font-size: 1.02rem;
   font-style: italic;
-  color: #888888;
+  color: #888;
 }
 
 .li {
@@ -83,5 +84,5 @@ body {
   width: 100%;
   padding: 0.7rem;
   font-size: 1.02rem;
-  color: #888888;
+  color: #888;
 }
