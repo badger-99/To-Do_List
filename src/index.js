@@ -1,15 +1,26 @@
 import taskTemplate from './taskTemplate.js';
 import './style.css';
+import Icon1 from './refresh.svg'
 
 function component() {
   const container = document.getElementById('toDo');
-  const heading = document.createElement('h3');
+  const heading = document.createElement('div');
   const entry = document.createElement('input');
   const list = document.createElement('ul');
   const clear = document.createElement('button');
 
   // Heading
-  heading.innerHTML = "Today's To Do";
+  heading.setAttribute('id', 'heading');
+  heading.innerHTML = "<h4>Today's To Do</h4>";
+
+  // refresh icon in the heading
+  const refresh = document.createElement('a')
+  refresh.setAttribute('href', '#');
+  const refreshIcon = new Image();
+  refreshIcon.src = Icon1;
+  refreshIcon.setAttribute('id', 'refresh');
+  refresh.appendChild(refreshIcon)
+  heading.appendChild(refresh)
   container.appendChild(heading);
 
   // Task input field
