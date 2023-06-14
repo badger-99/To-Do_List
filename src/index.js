@@ -1,6 +1,5 @@
 import taskTemplate from './taskTemplate.js';
 import './style.css';
-import Icon1 from './refresh.svg'
 
 function component() {
   const container = document.getElementById('toDo');
@@ -11,23 +10,13 @@ function component() {
 
   // Heading
   heading.setAttribute('id', 'heading');
-  heading.innerHTML = "<h4>Today's To Do</h4>";
-
-  // refresh icon in the heading
-  const refresh = document.createElement('a')
-  refresh.setAttribute('href', '#');
-  const refreshIcon = new Image();
-  refreshIcon.src = Icon1;
-  refreshIcon.classList.add('icon')
-  refreshIcon.setAttribute('id', 'refresh');
-  refresh.appendChild(refreshIcon)
-  heading.appendChild(refresh)
+  heading.innerHTML = '<h4>Today\'s To Do</h4><i class="fa-solid fa-arrows-rotate"></i>';
   container.appendChild(heading);
 
   // Task input field
   entry.setAttribute('id', 'input');
   entry.setAttribute('type', 'text');
-  entry.setAttribute('placeholder', 'Add to your list');
+  entry.setAttribute('placeholder', 'Add to your list...');
   container.appendChild(entry);
 
   // Task object array
@@ -46,15 +35,14 @@ function component() {
     },
   ];
 
-  tasks.forEach((item, index) => (item.index = index));
+  tasks.forEach((item, index) => { item.index = index; });
 
   list.innerHTML = tasks.map((task) => taskTemplate(task)).join('');
-  const span = document.querySelectorAll('.vertDot')
   container.appendChild(list);
 
   // Clear button
   clear.innerHTML = 'Clear all completed';
-  clear.classList.add('clear');
+  clear.setAttribute('id', 'clear');
   container.appendChild(clear);
 
   return container;

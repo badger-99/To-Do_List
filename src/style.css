@@ -1,16 +1,87 @@
 /* Importing downloaded font */
 @font-face {
-  font-family: 'MyFont', sans-serif;
-  src: url('./my-font.ttf') format('ttf');
+  font-family: 'Quattrocento', sans-serif;
+  src: url('./QuattrocentoSans-Italic.ttf') format('ttf');
 }
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+body {
+  border-top: 2rem solid black;
+  padding-top: 4rem;
+  background: #f5f5f5;
+}
+
 #toDo {
-  border:1px solid red;
-  font-family: 'MyFont', sans-serif;
+  border: 1px solid #dddddd;
+  font-family: 'Quattrocento', sans-serif;
   font-size: 1rem;
+  max-width: 36rem;
+  margin: 0 auto;
+  background: white;
+  box-shadow: 0px 3px 7px 11px #a8a8a8bf;
+}
+
+#heading,
+.li {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#refresh {
+  width: 1.5rem;
+}
+
+#heading {
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  color: #a7a7a7;
+  border-bottom: 0.063rem solid #c2c2c2;
+}
+
+#input {
+  width: 100%;
+  padding: 0.5rem;
+  border: none;
+  border-bottom: 0.063rem solid #d4d4d4;
+}
+
+#input::placeholder {
+  font-size: 1.02rem;
+  font-style: italic;
+  color: #888888;
+}
+
+.li {
+  padding: 0.5rem;
+  border-bottom: 0.063rem solid #d2d2d2;
+  color: #767676;
+}
+
+.label {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+#move:hover {
+  cursor: move;
+}
+
+.fa-ellipsis-vertical {
+  color: #a7a7a7;
+  margin-right: 0.45rem;
+}
+
+#clear {
+  border: none;
+  width: 100%;
+  padding: 0.7rem;
+  font-size: 1.02rem;
+  color: #888888;
 }
