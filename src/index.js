@@ -1,27 +1,51 @@
-import _ from 'lodash';
-import printMe from './print.js';
+import taskTemplate from './taskTemplate.js';
 import './style.css';
-import Icon from './icon.jpg';
 
 function component() {
-  const element = document.createElement('div');
-  const btn = document.createElement('button');
+  const container = document.getElementById('toDo');
+  const heading = document.createElement('div');
+  const entry = document.createElement('input');
+  const list = document.createElement('ul');
+  const clear = document.createElement('button');
 
-  // Lodash, now imported by this script
-  element.innerHTML = _.join(['Hello', 'there!'], ' ');
-  element.classList.add('hello');
+  // Heading
+  heading.setAttribute('id', 'heading');
+  heading.innerHTML = '<h4>Today\'s To Do</h4><i class="fa-solid fa-arrows-rotate"></i>';
+  container.appendChild(heading);
 
-  // button
-  btn.innerHTML = 'Click me and check the console!';
-  btn.onclick = printMe;
-  element.appendChild(btn);
+  // Task input field
+  entry.setAttribute('id', 'input');
+  entry.setAttribute('type', 'text');
+  entry.setAttribute('placeholder', 'Add to your list...');
+  container.appendChild(entry);
 
-  // Add the image to our existing div.
-  const myIcon = new Image();
-  myIcon.src = Icon;
-  element.appendChild(myIcon);
+  // Task object array
+  const tasks = [
+    {
+      description: 'Go to the Gym',
+      completed: true,
+    },
+    {
+      description: 'Make breakfast',
+      completed: true,
+    },
+    {
+      description: 'Clean Room',
+      completed: false,
+    },
+  ];
 
-  return element;
+  tasks.forEach((item, index) => { item.index = index; });
+
+  list.innerHTML = tasks.map((task) => taskTemplate(task)).join('');
+  container.appendChild(list);
+
+  // Clear button
+  clear.innerHTML = 'Clear all completed';
+  clear.setAttribute('id', 'clear');
+  container.appendChild(clear);
+
+  return container;
 }
 
 document.body.appendChild(component());
