@@ -45,17 +45,32 @@ body {
   border-bottom: 0.063rem solid #c2c2c2;
 }
 
-#input {
+#form{
   width: 100%;
-  padding: 0.5rem;
-  border: none;
   border-bottom: 0.063rem solid #d4d4d4;
+}
+
+#input {
+  padding: 0.5rem;
+  width: 94.2%;
+  border: none;
 }
 
 #input::placeholder {
   font-size: 1.02rem;
   font-style: italic;
   color: #888;
+}
+#submit{
+  padding: 0.1rem;
+  width: 5%;
+  background: none;
+  border: none;
+}
+
+#arrow{
+  font-size: 1.02rem;
+  color: #c7c7c7;
 }
 
 .li {
