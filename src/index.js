@@ -22,6 +22,7 @@ function component() {
   entry.setAttribute('placeholder', 'Add to your list...');
   submit.setAttribute('type','button')
   submit.setAttribute('id', 'submit')
+  submit.innerHTML = `<i class="fa-solid fa-arrow-turn-down fa-rotate-90" id='arrow'></i>`;
   form.appendChild(entry)
   form.appendChild(submit)
   container.appendChild(form);
