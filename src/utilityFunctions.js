@@ -25,10 +25,13 @@ class UtilityFunctions {
     }
   };
 
-  static addTask(array, book) {
-    array.push(book);
-    this.setStorage(array);
-  }
+  static addIndex = (array) => {
+    array = array.map((item, index) => ({
+      ...item,
+      index: index + 1,
+    }));
+    return array;
+  };
 
   static addTask = (array, task) => {
     array.push(task);
