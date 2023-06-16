@@ -4,6 +4,8 @@ import taskTemplate from './taskTemplate.js';
 import TaskList from './taskList.js';
 import Task from './task.js';
 import UtilityFunctions from './utilityFunctions.js';
+import statusUpdate from './status-update.js';
+import clearCompleted from './clear-completed.js';
 import './style.css';
 
 const container = document.getElementById('toDo');
@@ -33,20 +35,11 @@ form.addEventListener('submit', (e) => {
 });
 
 // Checkbox functionality
-const checkedArray = [];
-const checkboxes = container.querySelectorAll('input[type="checkbox"]');
-checkboxes.forEach((checkbox) => {
-  checkbox.addEventListener('change', () => {
-    const label = checkbox.nextElementSibling;
-    const taskNum = checkbox.dataset.index;
-    const idx = parseInt(taskNum, 10);
-    checkedArray.push(idx);
-    if (checkbox.checked) {
-      label.style.textDecoration = 'line-through';
-    } else {
-      label.style.textDecoration = 'none';
-    }
-  });
+container.addEventListener('change', (e) => {
+  if (e.target.classList.contains('status')) {
+    const checkbox = e.target;
+    statusUpdate(checkbox, taskArray);
+  }
 });
 
 // Editing and deleting tasks
@@ -86,4 +79,13 @@ container.addEventListener('click', (e) => {
       }
     });
   }
+});
+
+// Clear completed tasks
+clear.addEventListener('click', (e) => {
+  e.preventDefault();
+  let moddedArray = clearCompleted(taskArray);
+  moddedArray = UtilityFunctions.addIndex(moddedArray);
+  UtilityFunctions.setStorage(moddedArray);
+  UtilityFunctions.showTasks(list, taskTemplate);
 });

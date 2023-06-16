@@ -1,0 +1,1 @@
+export default (array) => array.filter((item) => item.completed === false);
