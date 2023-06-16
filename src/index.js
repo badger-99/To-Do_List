@@ -21,7 +21,14 @@ UtilityFunctions.showTasks(list, taskTemplate);
 
 container.appendChild(clear);
 
-  return container;
-}
+// Adding a task
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const newTask = new Task(entry.value);
+  const task = newTask.getTask();
+  UtilityFunctions.addTask(taskArray, task);
+  UtilityFunctions.showTasks(list, taskTemplate);
+  form.reset();
+});
 
 document.body.appendChild(component());
