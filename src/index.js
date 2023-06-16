@@ -33,18 +33,18 @@ form.addEventListener('submit', (e) => {
 });
 
 // Checkbox functionality
+const checkedArray = [];
 const checkboxes = container.querySelectorAll('input[type="checkbox"]');
 checkboxes.forEach((checkbox) => {
   checkbox.addEventListener('change', () => {
     const label = checkbox.nextElementSibling;
     const taskNum = checkbox.dataset.index;
     const idx = parseInt(taskNum, 10);
+    checkedArray.push(idx);
     if (checkbox.checked) {
-      console.log("I'm checked", idx);
       label.style.textDecoration = 'line-through';
     } else {
       label.style.textDecoration = 'none';
-      console.log("I'm un-checked");
     }
   });
 });
@@ -73,7 +73,6 @@ container.addEventListener('click', (e) => {
       // Deleting a task
       removeBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        console.log(`remove ${idx}`);
         UtilityFunctions.removeTask(taskArray, idx);
         UtilityFunctions.showTasks(list, taskTemplate);
       });

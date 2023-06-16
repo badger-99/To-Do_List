@@ -14,8 +14,8 @@ entry.setAttribute('placeholder', 'Add to your list...');
 // submit button
 submit.setAttribute('type', 'submit');
 submit.setAttribute('id', 'submit');
-submit.innerHTML = `<i class="fa-solid fa-arrow-turn-down fa-rotate-90" id='arrow'></i>`;
+submit.innerHTML = '<i class="fa-solid fa-arrow-turn-down fa-rotate-90" id=\'arrow\'></i>';
 form.appendChild(entry);
 form.appendChild(submit);
 
-export {form, entry}
+export { form, entry };

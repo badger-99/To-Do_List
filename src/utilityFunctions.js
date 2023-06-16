@@ -21,7 +21,7 @@ class UtilityFunctions {
         .map((task, index) => template(task, index))
         .join('');
     } else {
-      element.innerHTML = `<h4 id='empty'>there is nothing To Do</h4>`;
+      element.innerHTML = '<h4 id=\'empty\'>there is nothing To Do</h4>';
     }
   };
 
@@ -43,10 +43,7 @@ class UtilityFunctions {
     this.setStorage(this.addIndex(array));
   };
 
-  static modifyTask = (array, idx, value) => {
-    return array[idx].description = value
-    
-  };
+  static modifyTask = (array, idx, value) => { array[idx].description = value; };
 }
 
 export default UtilityFunctions;
