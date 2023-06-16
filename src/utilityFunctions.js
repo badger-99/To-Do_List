@@ -42,6 +42,11 @@ class UtilityFunctions {
     array.splice(idx, 1);
     this.setStorage(this.addIndex(array));
   };
+
+  static modifyTask = (array, idx, value) => {
+    return array[idx].description = value
+    
+  };
 }
 
 export default UtilityFunctions;
