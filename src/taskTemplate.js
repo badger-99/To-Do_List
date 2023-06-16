@@ -1,5 +1,5 @@
-export default (task) => {
+export default (task, index) => {
   const checkingControl = task.completed ? 'checked' : '';
 
-  return `<li class='li'><span class='label'><input type='checkbox' class='status' ${checkingControl}> ${task.description}</span><span><a href='#' id='move'><i class="fa-solid fa-ellipsis-vertical"></i></a></span></li>`;
+  return `<li class='task-item'><input type='checkbox' class='status' ${checkingControl} data-index="${index}"><input type="text" class="textBox" value="${task.description}" readonly data-index="${index}"><i class='fa-solid fa-ellipsis-vertical icon move'></i><i class='fa-regular fa-trash-can icon remove hidden' data-index="${index}"></i></li>`;
 };
