@@ -4,6 +4,7 @@ import taskTemplate from './taskTemplate.js';
 import TaskList from './taskList.js';
 import Task from './task.js';
 import UtilityFunctions from './utilityFunctions.js';
+import statusUpdate from './status-update.js';
 import clearCompleted from './clear-completed.js';
 import './style.css';
 
@@ -37,16 +38,7 @@ form.addEventListener('submit', (e) => {
 container.addEventListener('change', (e) => {
   if (e.target.classList.contains('status')) {
     const checkbox = e.target;
-    const label = checkbox.nextElementSibling;
-    const taskNum = checkbox.dataset.index;
-    const idx = parseInt(taskNum, 10);
-    if (checkbox.checked) {
-      label.style.textDecoration = 'line-through';
-      taskArray[idx].completed = true;
-    } else {
-      label.style.textDecoration = 'none';
-      taskArray[idx].completed = false;
-    }
+    statusUpdate(checkbox, taskArray);
   }
 });
 
