@@ -1,4 +1,5 @@
 import UtilityFunctions from './utilityFunctions.js';
+
 export default (checkbox, array) => {
   const label = checkbox.nextElementSibling;
   const taskNum = checkbox.dataset.index;
