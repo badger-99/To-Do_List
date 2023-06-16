@@ -1,4 +1,9 @@
+import { form, entry } from './task-input-form.js';
+import { heading, clear } from './form-top-and-bottom.js';
 import taskTemplate from './taskTemplate.js';
+import TaskList from './taskList.js';
+import Task from './task.js';
+import UtilityFunctions from './utilityFunctions.js';
 import './style.css';
 
 function component() {
