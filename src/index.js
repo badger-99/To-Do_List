@@ -1,51 +1,89 @@
+import { form, entry } from './task-input-form.js';
+import { heading, clear } from './form-top-and-bottom.js';
 import taskTemplate from './taskTemplate.js';
+import TaskList from './taskList.js';
+import Task from './task.js';
+import UtilityFunctions from './utilityFunctions.js';
 import './style.css';
 
-function component() {
-  const container = document.getElementById('toDo');
-  const heading = document.createElement('div');
-  const entry = document.createElement('input');
-  const list = document.createElement('ul');
-  const clear = document.createElement('button');
+const container = document.getElementById('toDo');
+const list = document.createElement('ul');
+list.setAttribute('id', 'ul');
 
-  // Heading
-  heading.setAttribute('id', 'heading');
-  heading.innerHTML = '<h4>Today\'s To Do</h4><i class="fa-solid fa-arrows-rotate"></i>';
-  container.appendChild(heading);
+container.appendChild(heading);
+container.appendChild(form);
+container.appendChild(list);
 
-  // Task input field
-  entry.setAttribute('id', 'input');
-  entry.setAttribute('type', 'text');
-  entry.setAttribute('placeholder', 'Add to your list...');
-  container.appendChild(entry);
+// Show list on browser
+const tasklist = new TaskList();
+let taskArray = tasklist.getArray();
+taskArray = [...UtilityFunctions.getStorage()];
+UtilityFunctions.showTasks(list, taskTemplate);
 
-  // Task object array
-  const tasks = [
-    {
-      description: 'Go to the Gym',
-      completed: true,
-    },
-    {
-      description: 'Make breakfast',
-      completed: true,
-    },
-    {
-      description: 'Clean Room',
-      completed: false,
-    },
-  ];
+container.appendChild(clear);
 
-  tasks.forEach((item, index) => { item.index = index; });
+// Adding a task
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const newTask = new Task(entry.value);
+  const task = newTask.getTask();
+  UtilityFunctions.addTask(taskArray, task);
+  UtilityFunctions.showTasks(list, taskTemplate);
+  form.reset();
+});
 
-  list.innerHTML = tasks.map((task) => taskTemplate(task)).join('');
-  container.appendChild(list);
+// Checkbox functionality
+const checkedArray = [];
+const checkboxes = container.querySelectorAll('input[type="checkbox"]');
+checkboxes.forEach((checkbox) => {
+  checkbox.addEventListener('change', () => {
+    const label = checkbox.nextElementSibling;
+    const taskNum = checkbox.dataset.index;
+    const idx = parseInt(taskNum, 10);
+    checkedArray.push(idx);
+    if (checkbox.checked) {
+      label.style.textDecoration = 'line-through';
+    } else {
+      label.style.textDecoration = 'none';
+    }
+  });
+});
 
-  // Clear button
-  clear.innerHTML = 'Clear all completed';
-  clear.setAttribute('id', 'clear');
-  container.appendChild(clear);
+// Editing and deleting tasks
+container.addEventListener('click', (e) => {
+  if (e.target.classList.contains('textBox')) {
+    const textBox = e.target;
+    const moveBtn = textBox.nextElementSibling;
+    const removeBtn = moveBtn.nextElementSibling;
+    const taskNum = textBox.dataset.index;
+    const idx = parseInt(taskNum, 10);
 
-  return container;
-}
+    textBox.readOnly = false; // Allowing task to be edited
+    moveBtn.classList.add('hidden');
+    removeBtn.classList.remove('hidden');
 
-document.body.appendChild(component());
+    textBox.addEventListener('blur', () => {
+      textBox.readOnly = true;
+
+      // Saving edited task
+      taskArray[idx].description = textBox.value;
+      const moddedArray = UtilityFunctions.addIndex(taskArray);
+      UtilityFunctions.setStorage(moddedArray);
+
+      // Deleting a task
+      removeBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        UtilityFunctions.removeTask(taskArray, idx);
+        UtilityFunctions.showTasks(list, taskTemplate);
+      });
+    });
+
+    // Resetting icons
+    document.body.addEventListener('click', (e) => {
+      if (e.target === document.body) {
+        moveBtn.classList.remove('hidden');
+        removeBtn.classList.add('hidden');
+      }
+    });
+  }
+});

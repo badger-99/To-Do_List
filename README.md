@@ -48,7 +48,7 @@
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- [Live Demo Link](https://badger-99.github.io/To-Do_List/)
+- [Live Demo Link](https://badger-99.github.io/To-Do_List/dist/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

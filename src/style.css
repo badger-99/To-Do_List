@@ -16,6 +16,16 @@ body {
   background: #f5f5f5;
 }
 
+.hidden {
+  visibility: hidden;
+  position: fixed;
+  left: 50%;
+}
+
+button {
+  border: none;
+}
+
 #toDo {
   border: 1px solid #ddd;
   font-family: 'Quattrocento', sans-serif;
@@ -26,30 +36,31 @@ body {
   box-shadow: 0 3px 7px 11px #a8a8a8bf;
 }
 
-#heading,
-.li {
+#heading {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-}
-
-#refresh {
-  width: 1.5rem;
-}
-
-#heading {
   padding: 0.5rem;
   font-size: 1.2rem;
   color: #a7a7a7;
   border-bottom: 0.063rem solid #c2c2c2;
 }
 
-#input {
+#refresh {
+  color: #a7a7a7;
+  width: 1.5rem;
+}
+
+#form {
   width: 100%;
-  padding: 0.5rem;
-  border: none;
   border-bottom: 0.063rem solid #d4d4d4;
+}
+
+#input {
+  padding: 0.5rem;
+  width: 94.2%;
+  border: none;
 }
 
 #input::placeholder {
@@ -58,29 +69,75 @@ body {
   color: #888;
 }
 
-.li {
-  padding: 0.5rem;
-  border-bottom: 0.063rem solid #d2d2d2;
-  color: #767676;
+#submit {
+  padding: 0.1rem;
+  width: 5%;
+  background: none;
+  border: none;
 }
 
-.label {
+#submit:hover {
+  cursor: pointer;
+}
+
+#arrow {
+  font-size: 1.02rem;
+  color: #c7c7c7;
+}
+
+#empty {
+  color: #a7a7a7;
+  text-align: center;
+}
+
+.task-item {
+  list-style: none;
+  width: 100%;
+  padding: 0 0.5rem;
+  border-bottom: 0.063rem solid #d2d2d2;
+  color: #767676;
   display: flex;
   flex-direction: row;
   gap: 1rem;
+  position: relative;
 }
 
-#move:hover {
+.textBox {
+  padding: 0.5rem 0;
+  width: 90%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  font-size: 1.02rem;
+  color: #595959;
+  border: none;
+}
+
+.move:hover {
   cursor: move;
 }
 
-.fa-ellipsis-vertical {
+.remove:hover {
+  cursor: pointer;
+}
+
+.fa-ellipsis-vertical,
+.fa-trash-can {
   color: #a7a7a7;
-  margin-right: 0.45rem;
+  margin: 0 0.5rem;
+}
+
+.fa-trash-can {
+  color: #a7a7a7;
+  margin-right: 0.2rem;
+}
+
+.icon {
+  padding: 0.5rem;
+  position: absolute;
+  right: 0;
 }
 
 #clear {
-  border: none;
   width: 100%;
   padding: 0.7rem;
   font-size: 1.02rem;
