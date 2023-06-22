@@ -86,7 +86,7 @@ clear.addEventListener('click', (e) => {
   e.preventDefault();
   let moddedArray = clearCompleted(taskArray);
   moddedArray = UtilityFunctions.addIndex(moddedArray);
-  taskArray = moddedArray
+  taskArray = moddedArray;
   UtilityFunctions.setStorage(moddedArray);
   UtilityFunctions.showTasks(list, taskTemplate);
 });
