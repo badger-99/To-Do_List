@@ -4,8 +4,13 @@ import taskTemplate from './taskTemplate.js';
 import TaskList from './taskList.js';
 import Task from './task.js';
 import UtilityFunctions from './utilityFunctions.js';
-import statusUpdate from './status-update.js';
-import clearCompleted from './clear-completed.js';
+import {
+  addNewTaskToList,
+  statusUpdate,
+  editAndDeleteTasks,
+  clearCompleted,
+} from './eventListenerFunctions.js';
+// import clearCompleted from './clear-completed.js';
 import './style.css';
 
 const container = document.getElementById('toDo');
@@ -27,10 +32,7 @@ container.appendChild(clear);
 // Adding a task
 form.addEventListener('submit', (e) => {
   e.preventDefault();
-  const newTask = new Task(entry.value);
-  const task = newTask.getTask();
-  UtilityFunctions.addTask(taskArray, task);
-  UtilityFunctions.showTasks(list, taskTemplate);
+  addNewTaskToList(entry, taskArray, list, taskTemplate);
   form.reset();
 });
 
@@ -46,47 +48,13 @@ container.addEventListener('change', (e) => {
 container.addEventListener('click', (e) => {
   if (e.target.classList.contains('textBox')) {
     const textBox = e.target;
-    const moveBtn = textBox.nextElementSibling;
-    const removeBtn = moveBtn.nextElementSibling;
-    const taskNum = textBox.dataset.index;
-    const idx = parseInt(taskNum, 10);
-
-    textBox.readOnly = false; // Allowing task to be edited
-    moveBtn.classList.add('hidden');
-    removeBtn.classList.remove('hidden');
-
-    textBox.addEventListener('blur', () => {
-      textBox.readOnly = true;
-
-      // Saving edited task
-      taskArray[idx].description = textBox.value;
-      const moddedArray = UtilityFunctions.addIndex(taskArray);
-      UtilityFunctions.setStorage(moddedArray);
-
-      // Deleting a task
-      removeBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        UtilityFunctions.removeTask(taskArray, idx);
-        UtilityFunctions.showTasks(list, taskTemplate);
-      });
-    });
-
-    // Resetting icons
-    document.body.addEventListener('click', (e) => {
-      if (e.target === document.body) {
-        moveBtn.classList.remove('hidden');
-        removeBtn.classList.add('hidden');
-      }
-    });
+    editAndDeleteTasks(textBox, taskArray, list, taskTemplate);
   }
 });
 
 // Clear completed tasks
 clear.addEventListener('click', (e) => {
   e.preventDefault();
-  let moddedArray = clearCompleted(taskArray);
-  moddedArray = UtilityFunctions.addIndex(moddedArray);
-  taskArray = moddedArray;
-  UtilityFunctions.setStorage(moddedArray);
-  UtilityFunctions.showTasks(list, taskTemplate);
+  let moddedArray = [];
+  clearCompleted(taskArray, moddedArray, list, taskTemplate);
 });
