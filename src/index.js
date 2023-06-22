@@ -1,8 +1,8 @@
+import './style.css';
 import { form, entry } from './task-input-form.js';
 import { heading, clear } from './form-top-and-bottom.js';
 import taskTemplate from './taskTemplate.js';
 import TaskList from './taskList.js';
-import Task from './task.js';
 import UtilityFunctions from './utilityFunctions.js';
 import {
   addNewTaskToList,
@@ -10,8 +10,6 @@ import {
   editAndDeleteTasks,
   clearCompleted,
 } from './eventListenerFunctions.js';
-// import clearCompleted from './clear-completed.js';
-import './style.css';
 
 const container = document.getElementById('toDo');
 const list = document.createElement('ul');
