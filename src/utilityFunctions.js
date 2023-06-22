@@ -20,6 +20,7 @@ class UtilityFunctions {
       element.innerHTML = retrievedTasks
         .map((task, index) => template(task, index))
         .join('');
+      this.applyCompletedClass(retrievedTasks);
     } else {
       element.innerHTML = '<h4 id=\'empty\'>there is nothing To Do</h4>';
     }
@@ -44,6 +45,17 @@ class UtilityFunctions {
   };
 
   static modifyTask = (array, idx, value) => { array[idx].description = value; };
+
+  static applyCompletedClass = (array) => {
+    array.forEach((item, idx) => {
+      const label = document.getElementById(`todo${idx+1}`);
+      if (item.completed) {
+        label.classList.add('completed');
+      } else {
+        label.classList.remove('completed');
+      }
+    });
+  }
 }
 
 export default UtilityFunctions;
