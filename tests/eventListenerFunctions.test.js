@@ -55,14 +55,10 @@ describe('testing "edit" from editAndDeleteTasks', () => {
     };
 
     container.addEventListener('click', (e) => {
-      console.log('click heard', e.target);
       if (e.target.classList.contains('textBox')) {
         const textbox = e.target;
-        console.log('text box found');
         editAndDeleteTasks(textbox, taskArray, container, template);
-        console.log('changes complete');
       }
-      // console.log('event done');
     });
 
     const mockClick = new Event('click', { bubbles: true });
