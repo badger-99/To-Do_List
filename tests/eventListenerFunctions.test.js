@@ -70,4 +70,32 @@ describe('testing "edit" from editAndDeleteTasks', () => {
 
     expect(taskArray[0].description).toBe('New Changed Value');
   })
-})
+});
+describe('testing status changes,', () => {
+  test('should flag task as completed.', () => { 
+    const taskArray = [
+      {
+        index:0,
+        completed:false,
+        description:'test desc',
+      }
+    ];
+    const container = document.createElement('div');
+    const checkbox = document.createElement('input');
+    const input = document.createElement('input');
+    checkbox.setAttribute('type','checkbox');
+    checkbox.setAttribute('data-index', '0');
+    checkbox.classList.add('status');
+
+    container.appendChild(checkbox);
+    container.appendChild(input);
+
+    checkbox.addEventListener('change',(e) => {
+      statusUpdate(e.target, taskArray);
+    });
+    checkbox.checked = true;
+    const mockChange = new Event('change');
+    checkbox.dispatchEvent(mockChange);
+    expect(taskArray[0].completed).toBe(true);
+   })
+});
