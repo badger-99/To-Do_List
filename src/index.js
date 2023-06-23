@@ -24,6 +24,7 @@ const tasklist = new TaskList();
 let taskArray = tasklist.getArray();
 taskArray = [...UtilityFunctions.getStorage()];
 UtilityFunctions.showTasks(list, taskTemplate);
+UtilityFunctions.applyCompletedClass(taskArray);
 
 container.appendChild(clear);
 
@@ -54,5 +55,6 @@ container.addEventListener('click', (e) => {
 clear.addEventListener('click', (e) => {
   e.preventDefault();
   let moddedArray = [];
-  clearCompleted(taskArray, moddedArray, list, taskTemplate);
+  taskArray = clearCompleted(taskArray, moddedArray, list, taskTemplate);
+  UtilityFunctions.applyCompletedClass(taskArray);
 });

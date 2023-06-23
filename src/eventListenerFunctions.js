@@ -7,6 +7,7 @@ export const addNewTaskToList = (entry, array, ul, template) => {
   const task = newTask.getTask();
   UtilityFunctions.addTask(array, task);
   UtilityFunctions.showTasks(ul, template);
+  UtilityFunctions.applyCompletedClass(array)
 };
 
 // Update task status
@@ -51,6 +52,7 @@ export const editAndDeleteTasks = (textBox, taskArray, ul, template) => {
         e.preventDefault();
         UtilityFunctions.removeTask(taskArray, idx);
         UtilityFunctions.showTasks(ul, template);
+        UtilityFunctions.applyCompletedClass(taskArray);
       });
     });
 
@@ -68,9 +70,8 @@ export const editAndDeleteTasks = (textBox, taskArray, ul, template) => {
 export const clearCompleted = (array, moddedArray, ul, template) => {
   moddedArray = array.filter((item) => item.completed === false);
   moddedArray = UtilityFunctions.addIndex(moddedArray);
-  array = moddedArray;
   UtilityFunctions.setStorage(moddedArray);
   UtilityFunctions.showTasks(ul, template);
+  return moddedArray;
 };
-// clearCompleted (taskArray, moddedArray)
 // import { addNewTaskToList, statusUpdate, editAndDeleteTasks, clearCompleted } from './eventListenerFinctions.js';
