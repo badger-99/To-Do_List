@@ -1,4 +1,4 @@
-import UtilityFunctions from './utilityFunctions';
+import UtilityFunctions from './utilityFunctions.js';
 import Task from './task.js';
 
 // Add new task to list
@@ -74,4 +74,3 @@ export const clearCompleted = (array, moddedArray, ul, template) => {
   UtilityFunctions.showTasks(ul, template);
   return moddedArray;
 };
-// import { addNewTaskToList, statusUpdate, editAndDeleteTasks, clearCompleted } from './eventListenerFinctions.js';
