@@ -13,6 +13,7 @@
   "license": "ISC",
   "devDependencies": {
     "@babel/plugin-transform-modules-commonjs": "^7.22.5",
+    "@testing-library/dom": "^9.3.1",
     "babel-eslint": "^10.1.0",
     "css-loader": "^6.8.1",
     "eslint": "^7.32.0",
@@ -37,6 +38,8 @@
   },
   "jest": {
     "resetMocks": false,
-    "setupFiles": ["jest-localstorage-mock"]
+    "setupFiles": [
+      "jest-localstorage-mock"
+    ]
   }
 }
