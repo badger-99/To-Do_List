@@ -7,7 +7,7 @@ export const addNewTaskToList = (entry, array, ul, template) => {
   const task = newTask.getTask();
   UtilityFunctions.addTask(array, task);
   UtilityFunctions.showTasks(ul, template);
-  UtilityFunctions.applyCompletedClass(array)
+  UtilityFunctions.applyCompletedClass(array);
 };
 
 // Update task status

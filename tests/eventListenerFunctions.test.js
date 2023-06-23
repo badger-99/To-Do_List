@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 import { fireEvent } from '@testing-library/dom';
-import { editAndDeleteTasks, statusUpdate, clearCompleted } from '../src/eventListenerFunctions.js';
+import { editAndDeleteTasks, statusUpdate } from '../src/eventListenerFunctions.js';
 
 describe('testing "edit" from editAndDeleteTasks', () => {
   test('task description changes after user input', () => {
@@ -33,7 +33,7 @@ describe('testing "edit" from editAndDeleteTasks', () => {
       'fa-trash-can',
       'icon',
       'remove',
-      'hidden'
+      'hidden',
     );
 
     li.appendChild(textBox);
@@ -47,8 +47,8 @@ describe('testing "edit" from editAndDeleteTasks', () => {
       return `<li class='task-item'>
       <input type='checkbox' class='status' ${checkingControl} data-index="${index}">
       <input type="text" class="textBox" id="todo${index + 1}" value="${
-        task.description
-      }" readonly data-index="${index}">
+  task.description
+}" readonly data-index="${index}">
       <i class='fa-solid fa-ellipsis-vertical icon move'></i>
       <i class='fa-regular fa-trash-can icon remove hidden' data-index="${index}"></i>
       </li>`;
@@ -69,33 +69,33 @@ describe('testing "edit" from editAndDeleteTasks', () => {
     textBox.dispatchEvent(mockBlur);
 
     expect(taskArray[0].description).toBe('New Changed Value');
-  })
+  });
 });
 describe('testing status changes,', () => {
-  test('should flag task as completed.', () => { 
+  test('should flag task as completed.', () => {
     const taskArray = [
       {
-        index:0,
-        completed:false,
-        description:'test desc',
-      }
+        index: 0,
+        completed: false,
+        description: 'test desc',
+      },
     ];
     const container = document.createElement('div');
     const checkbox = document.createElement('input');
     const input = document.createElement('input');
-    checkbox.setAttribute('type','checkbox');
+    checkbox.setAttribute('type', 'checkbox');
     checkbox.setAttribute('data-index', '0');
     checkbox.classList.add('status');
 
     container.appendChild(checkbox);
     container.appendChild(input);
 
-    checkbox.addEventListener('change',(e) => {
+    checkbox.addEventListener('change', (e) => {
       statusUpdate(e.target, taskArray);
     });
     checkbox.checked = true;
     const mockChange = new Event('change');
     checkbox.dispatchEvent(mockChange);
     expect(taskArray[0].completed).toBe(true);
-   })
+  });
 });

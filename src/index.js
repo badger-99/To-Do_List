@@ -54,7 +54,7 @@ container.addEventListener('click', (e) => {
 // Clear completed tasks
 clear.addEventListener('click', (e) => {
   e.preventDefault();
-  let moddedArray = [];
+  const moddedArray = [];
   taskArray = clearCompleted(taskArray, moddedArray, list, taskTemplate);
   UtilityFunctions.applyCompletedClass(taskArray);
 });

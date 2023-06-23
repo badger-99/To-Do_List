@@ -47,7 +47,7 @@ class UtilityFunctions {
 
   static applyCompletedClass = (array) => {
     array.forEach((item, idx) => {
-      const label = document.getElementById(`todo${idx+1}`);
+      const label = document.getElementById(`todo${idx + 1}`);
       if (item.completed) {
         label.classList.add('completed');
       } else {
