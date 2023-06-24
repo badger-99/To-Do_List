@@ -44,6 +44,17 @@ class UtilityFunctions {
   };
 
   static modifyTask = (array, idx, value) => { array[idx].description = value; };
+
+  static applyCompletedClass = (array) => {
+    array.forEach((item, idx) => {
+      const label = document.getElementById(`todo${idx + 1}`);
+      if (item.completed) {
+        label.classList.add('completed');
+      } else {
+        label.classList.remove('completed');
+      }
+    });
+  }
 }
 
 export default UtilityFunctions;
